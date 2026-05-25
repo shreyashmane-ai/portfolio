@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+  main { padding-top: 6rem; }
+  .admin-page-header { margin-bottom: 2rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="admin-page-header">
+    <span class="section-label">Admin console</span>
+    <h1 class="section-title">Thunder control panel</h1>
+    <p class="section-desc">Manage your live portfolio content with the same cinematic glass theme used across the site.</p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="glass-panel p-4 h-100">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div>
+            <h4>Site settings</h4>
+            <p class="text-secondary mb-0">Update global site metadata and hero profile.</p>
+          </div>
+          <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light btn-sm">Sign out</a>
+        </div>
+        {% if site %}
+          <p><strong>{{ site.name }}</strong><br>{{ site.title }}</p>
+          <a href="{{ url_for('admin.site_settings') }}" class="btn btn-thunder btn-sm">Edit site</a>
+        {% else %}
+          <p>No site record found.</p>
+          <a href="{{ url_for('admin.site_settings') }}" class="btn btn-thunder btn-sm">Create site</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="glass-panel p-4 h-100">
+        <h4>About section</h4>
+        <p class="text-secondary mb-3">Control the portfolio intro, stats, and summary details.</p>
+        {% if about %}
+          <p>{{ about.headline }}</p>
+          <a href="{{ url_for('admin.about_settings') }}" class="btn btn-thunder btn-sm">Edit about</a>
+        {% else %}
+          <p>No about section found.</p>
+          <a href="{{ url_for('admin.about_settings') }}" class="btn btn-thunder btn-sm">Create about</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mt-4">
+    <div class="col-md-4">
+      <div class="glass-panel p-4 h-100">
+        <h5>Projects</h5>
+        <p class="text-secondary">{{ projects|length }} configured.</p>
+        <a href="{{ url_for('admin.project_list') }}" class="btn btn-thunder btn-sm">Manage projects</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="glass-panel p-4 h-100">
+        <h5>Experience</h5>
+        <p class="text-secondary">{{ experience|length }} entries configured.</p>
+        <a href="{{ url_for('admin.experience_list') }}" class="btn btn-thunder btn-sm">Manage experience</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="glass-panel p-4 h-100">
+        <h5>Skills</h5>
+        <p class="text-secondary">{{ skills|length }} categories configured.</p>
+        <a href="{{ url_for('admin.skill_list') }}" class="btn btn-thunder btn-sm">Manage skills</a>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="glass-panel p-4 h-100">
+        <h5>Messages</h5>
+        <p class="text-secondary">View visitor contact messages.</p>
+        <a href="{{ url_for('admin.message_list') }}" class="btn btn-thunder btn-sm">Manage messages</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

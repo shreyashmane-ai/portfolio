@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="admin-page-header">
+    <span class="section-label">Message</span>
+    <h1 class="section-title">Message from {{ message.name }}</h1>
+    <p class="section-desc">Received {{ message.created_at }}</p>
+  </div>
+
+  <div class="glass-panel p-4">
+    <dl class="row">
+      <dt class="col-sm-3">Name</dt>
+      <dd class="col-sm-9">{{ message.name }}</dd>
+
+      <dt class="col-sm-3">Email</dt>
+      <dd class="col-sm-9"><a href="mailto:{{ message.email }}">{{ message.email }}</a></dd>
+
+      <dt class="col-sm-3">Subject</dt>
+      <dd class="col-sm-9">{{ message.subject or '—' }}</dd>
+
+      <dt class="col-sm-3">Message</dt>
+      <dd class="col-sm-9"><pre style="white-space:pre-wrap">{{ message.message }}</pre></dd>
+    </dl>
+
+    <div class="d-flex gap-2">
+      <a href="{{ url_for('admin.message_list') }}" class="btn btn-outline-light">Back</a>
+      <form action="{{ url_for('admin.message_delete', message_id=message.id) }}" method="post" onsubmit="return confirm('Delete message?');">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

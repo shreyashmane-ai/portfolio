@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+  main { padding-top: 6rem; }
+  .admin-page-header { margin-bottom: 2rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="admin-page-header">
+    <span class="section-label">Projects</span>
+    <h1 class="section-title">Project editor</h1>
+    <p class="section-desc">Create or update a portfolio project with title, description, tech stack, metrics and links.</p>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="glass-panel p-4">
+        <h3 class="mb-3">{{ project and 'Edit project' or 'New project' }}</h3>
+        <form method="post">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            {{ form.slug.label(class_='form-label') }}
+            {{ form.slug(class_='form-control thunder-input') }}
+            <div class="form-text">Unique slug used for project URL and identifier.</div>
+          </div>
+          <div class="mb-3">
+            {{ form.title.label(class_='form-label') }}
+            {{ form.title(class_='form-control thunder-input') }}
+          </div>
+          <div class="mb-3">
+            {{ form.subtitle.label(class_='form-label') }}
+            {{ form.subtitle(class_='form-control thunder-input') }}
+          </div>
+          <div class="mb-3">
+            {{ form.description.label(class_='form-label') }}
+            {{ form.description(class_='form-control thunder-input', rows=4) }}
+          </div>
+          <div class="mb-3">
+            {{ form.tech.label(class_='form-label') }}
+            {{ form.tech(class_='form-control thunder-input', rows=4) }}
+            <div class="form-text">One technology per line.</div>
+          </div>
+          <div class="mb-3">
+            {{ form.metrics.label(class_='form-label') }}
+            {{ form.metrics(class_='form-control thunder-input', rows=4) }}
+            <div class="form-text">One metric per line: label|value.</div>
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              {{ form.github.label(class_='form-label') }}
+              {{ form.github(class_='form-control thunder-input') }}
+            </div>
+            <div class="col-md-6">
+              {{ form.demo.label(class_='form-label') }}
+              {{ form.demo(class_='form-control thunder-input') }}
+            </div>
+          </div>
+          <div class="mb-3 mt-3">
+            {{ form.status.label(class_='form-label') }}
+            {{ form.status(class_='form-control thunder-input') }}
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <a href="{{ url_for('admin.project_list') }}" class="btn btn-outline-light">Cancel</a>
+            {{ form.submit(class_='btn btn-thunder') }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

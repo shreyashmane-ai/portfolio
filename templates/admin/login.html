@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+  main { padding-top: 6rem; }
+  .admin-page-header { margin-bottom: 2rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="admin-page-header">
+    <span class="section-label">Admin sign in</span>
+    <h1 class="section-title">Secure access</h1>
+    <p class="section-desc">Sign in to manage your portfolio content within the theme-aligned admin console.</p>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="glass-panel p-4">
+        <h3 class="mb-3">Admin Sign In</h3>
+        <form method="post">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            {{ form.username.label(class_='form-label') }}
+            {{ form.username(class_='form-control thunder-input') }}
+          </div>
+          <div class="mb-3">
+            {{ form.password.label(class_='form-label') }}
+            {{ form.password(class_='form-control thunder-input') }}
+          </div>
+          <div class="d-grid">
+            {{ form.submit(class_='btn btn-thunder') }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

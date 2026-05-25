@@ -1,0 +1,47 @@
+<section id="home" class="section" data-section="home">
+  <div class="container-fluid px-3 px-lg-5">
+    <div class="row align-items-center min-vh-100 g-4 g-xl-5">
+      <div class="col-lg-7 col-xl-6">
+        <div class="hero-content reveal-up">
+          <div class="hero-badge glass-chip">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>{{ site.availability }}</span>
+          </div>
+
+          <p class="hero-eyebrow section-label">Thunder-Powered Backend Command Center</p>
+
+          <h1 class="hero-title">
+            <span class="hero-title-line" data-typing="{{ site.name }}">{{ site.name }}</span>
+          </h1>
+
+          <p class="hero-role">
+            <span id="typed-role" data-roles="{% for role in site.hero_roles or [] %}{{ role }}{% if not loop.last %}|{% endif %}{% endfor %}"></span>
+            <span class="typed-cursor" aria-hidden="true">|</span>
+          </p>
+
+          <p class="hero-tagline">{{ site.tagline }}</p>
+
+          <div class="hero-actions d-flex flex-wrap gap-3">
+            <a href="#projects" class="btn btn-thunder btn-lg mjolnir-btn">
+              <i class="bi bi-boxes" aria-hidden="true"></i> Explore Projects
+            </a>
+            <a href="#contact" class="btn btn-ghost btn-lg mjolnir-btn">
+              <i class="bi bi-broadcast" aria-hidden="true"></i> Contact Me
+            </a>
+          </div>
+
+          <div class="hero-badges d-flex flex-wrap gap-2 mt-4">
+            {% for role in site.hero_roles or [] %}
+            <span class="tech-badge glass-chip">{{ role }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 col-xl-6 d-none d-lg-flex justify-content-center align-items-center">
+        <figure class="hero-illustration reveal-up">
+          <img src="{{ url_for('static', filename='images/hero.png') }}" alt="Hero illustration" class="img-fluid" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>

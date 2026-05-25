@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+  main { padding-top: 6rem; }
+  .admin-page-header { margin-bottom: 2rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="admin-page-header">
+    <span class="section-label">Skills</span>
+    <h1 class="section-title">Skill category editor</h1>
+    <p class="section-desc">Add and manage categories, icon labels, and skill items for your portfolio.</p>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="glass-panel p-4">
+        <h3 class="mb-3">{{ skill and 'Edit skill category' or 'New skill category' }}</h3>
+        <form method="post">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            {{ form.category.label(class_='form-label') }}
+            {{ form.category(class_='form-control thunder-input') }}
+          </div>
+          <div class="mb-3">
+            {{ form.icon.label(class_='form-label') }}
+            {{ form.icon(class_='form-control thunder-input') }}
+          </div>
+          <div class="mb-3">
+            {{ form.items.label(class_='form-label') }}
+            {{ form.items(class_='form-control thunder-input', rows=4) }}
+            <div class="form-text">One item per line.</div>
+          </div>
+          <div class="mb-3 mt-3">
+            {{ form.level.label(class_='form-label') }}
+            {{ form.level(class_='form-control thunder-input') }}
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <a href="{{ url_for('admin.skill_list') }}" class="btn btn-outline-light">Cancel</a>
+            {{ form.submit(class_='btn btn-thunder') }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

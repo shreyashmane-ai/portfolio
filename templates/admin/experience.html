@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+  main { padding-top: 6rem; }
+  .admin-page-header { margin-bottom: 2rem; }
+  .admin-table thead th { border-bottom: 1px solid rgba(255,255,255,.12); }
+  .admin-table .table {
+    color: #f8f9fa;
+  }
+  .admin-table .table-hover tbody tr:hover {
+    background: rgba(255,255,255,.06);
+  }
+  .admin-table td,
+  .admin-table th {
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="admin-page-header">
+    <span class="section-label">Experience</span>
+    <h1 class="section-title">Timeline management</h1>
+    <p class="section-desc">Edit the professional experience entries shown on your portfolio with a polished glass-style admin page.</p>
+  </div>
+
+  <div class="d-flex flex-column gap-3 mb-4">
+    <div class="glass-panel p-4 d-flex flex-wrap gap-3 justify-content-between align-items-center">
+      <div>
+        <h5 class="mb-1">Experience entries</h5>
+        <p class="text-secondary mb-0">Add or update timeline cards for work and education.</p>
+      </div>
+      <a href="{{ url_for('admin.experience_create') }}" class="btn btn-thunder">New entry</a>
+    </div>
+  </div>
+
+  <div class="glass-panel p-4">
+    {% if experience %}
+    <div class="table-responsive admin-table">
+      <table class="table table-dark table-striped table-hover table-borderless align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Company</th>
+            <th>Period</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in experience %}
+          <tr>
+            <td>{{ item.role }}</td>
+            <td>{{ item.company }}</td>
+            <td>{{ item.period }}</td>
+            <td class="text-end">
+              <a href="{{ url_for('admin.experience_edit', experience_id=item.id) }}" class="btn btn-outline-light btn-sm me-2">Edit</a>
+              <form action="{{ url_for('admin.experience_delete', experience_id=item.id) }}" method="post" class="d-inline">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="py-5 text-center text-secondary">
+      <p class="mb-2">No experience entries found yet.</p>
+      <a href="{{ url_for('admin.experience_create') }}" class="btn btn-thunder">Add an entry</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

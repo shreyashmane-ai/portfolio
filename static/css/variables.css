@@ -1,0 +1,99 @@
+/* Design tokens — Thunder Command */
+:root {
+  /* Palette */
+  --color-space: #0b0f19;
+  --color-storm: #111827;
+  --color-storm-light: #1a2234;
+  --color-electric: #00d4ff;
+  --color-electric-dim: rgba(0, 212, 255, 0.15);
+  --color-purple: #7c3aed;
+  --color-purple-dim: rgba(124, 58, 237, 0.2);
+  --color-lightning: #e5e7eb;
+  --color-muted: #9ca3af;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+
+  /* Semantic */
+  --bg-primary: var(--color-space);
+  --bg-secondary: var(--color-storm);
+  --bg-elevated: rgba(17, 24, 39, 0.72);
+  --text-primary: var(--color-lightning);
+  --text-secondary: var(--color-muted);
+  --accent-primary: var(--color-electric);
+  --accent-secondary: var(--color-purple);
+  --border-glow: rgba(0, 212, 255, 0.35);
+  --glass-bg: rgba(17, 24, 39, 0.55);
+  --glass-border: rgba(229, 231, 235, 0.08);
+  --scrim: rgba(11, 15, 25, 0.75);
+
+  /* Typography */
+  --font-display: "Orbitron", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --text-base: 1rem;
+  --leading-body: 1.65;
+
+  /* Spacing (8dp rhythm) */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 5rem;
+
+  /* Layout */
+  --navbar-height: 72px;
+  --sidebar-width: 88px;
+  --container-max: 1320px;
+  --section-pad: clamp(4rem, 10vh, 7rem);
+
+  /* Effects */
+  --blur-glass: 16px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.12);
+  --shadow-purple: 0 0 60px rgba(124, 58, 237, 0.15);
+  --gradient-bifrost: linear-gradient(
+    135deg,
+    var(--color-electric) 0%,
+    var(--color-purple) 50%,
+    var(--color-electric) 100%
+  );
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+
+  /* Z-index scale */
+  --z-particles: 0;
+  --z-content: 1;
+  --z-sidebar: 100;
+  --z-navbar: 200;
+  --z-loader: 9999;
+  --z-cursor: 50;
+}
+
+[data-theme="light"] {
+  --bg-primary: #f4f6fb;
+  --bg-secondary: #ffffff;
+  --bg-elevated: rgba(255, 255, 255, 0.85);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --border-glow: rgba(0, 148, 180, 0.35);
+  --scrim: rgba(15, 23, 42, 0.5);
+  --shadow-glow: 0 0 40px rgba(0, 148, 180, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

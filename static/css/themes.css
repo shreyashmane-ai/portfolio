@@ -1,0 +1,56 @@
+/* Light / dark theme overrides */
+[data-theme="light"] .thunder-body {
+  background-color: var(--bg-primary);
+}
+
+[data-theme="light"] .particle-canvas {
+  opacity: 0.35;
+}
+
+[data-theme="light"] .glass-panel {
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="light"] .hero-title,
+[data-theme="light"] .section-title {
+  background: linear-gradient(135deg, #0f172a 0%, #0094b4 50%, #6d28d9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+[data-theme="light"] .thunder-input {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .dashboard-terminal {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .loader-storm {
+  background: radial-gradient(ellipse at center, #e2e8f0 0%, #f4f6fb 70%);
+}
+
+[data-theme="light"] .thunder-loader {
+  background: var(--bg-primary);
+}
+
+[data-theme="light"] .btn-close-white {
+  filter: invert(1);
+}
+
+[data-theme="dark"] .theme-icon-light {
+  display: none !important;
+}
+
+[data-theme="dark"] .theme-icon-dark {
+  display: inline-block !important;
+}
+
+[data-theme="light"] .theme-icon-dark {
+  display: none !important;
+}
+
+[data-theme="light"] .theme-icon-light {
+  display: inline-block !important;
+}

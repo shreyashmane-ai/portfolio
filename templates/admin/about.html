@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+  main { padding-top: 6rem; }
+  .admin-page-header { margin-bottom: 2rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="admin-page-header">
+    <span class="section-label">About section</span>
+    <h1 class="section-title">Introduction content</h1>
+    <p class="section-desc">Edit the hero copy, paragraphs, and stats that appear on the portfolio landing experience.</p>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="glass-panel p-4">
+        <h3 class="mb-3">About section</h3>
+        <form method="post">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            {{ form.headline.label(class_='form-label') }}
+            {{ form.headline(class_='form-control thunder-input') }}
+          </div>
+          <div class="mb-3">
+            {{ form.paragraphs.label(class_='form-label') }}
+            {{ form.paragraphs(class_='form-control thunder-input', rows=6) }}
+            <div class="form-text">Enter one paragraph per line.</div>
+          </div>
+          <div class="mb-3">
+            {{ form.stats.label(class_='form-label') }}
+            {{ form.stats(class_='form-control thunder-input', rows=4) }}
+            <div class="form-text">One stat per line: label|value|suffix</div>
+          </div>
+          <div class="d-grid mt-4">
+            {{ form.submit(class_='btn btn-thunder btn-lg') }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

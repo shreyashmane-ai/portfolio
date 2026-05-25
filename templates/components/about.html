@@ -1,0 +1,53 @@
+<section id="about" class="section section-about" data-section="about">
+  <div class="container px-3 px-lg-5">
+    <header class="section-header reveal-up">
+      <span class="section-label">Sector 01</span>
+      <h2 class="section-title">about</h2>
+      <p class="section-desc">The engineer behind the storm — forged in production fire.</p>
+    </header>
+
+    <div class="row g-4 g-xl-5 align-items-stretch">
+      <div class="col-lg-5">
+        <div class="holo-profile glass-panel energy-border reveal-up">
+          <div class="holo-avatar" aria-hidden="true">
+            <div class="avatar-ring"></div>
+            <div class="avatar-core">
+              {% set parts = site.name.split() %}
+              <span class="avatar-initials">{{ (parts[0][0] ~ (parts[-1][0] if parts|length > 1 else ''))|upper }}</span>
+            </div>
+          </div>
+          <h3 class="holo-name">{{ site.name }}</h3>
+          <p class="holo-role">{{ site.title }}</p>
+          <ul class="holo-meta list-unstyled">
+            <li><i class="bi bi-geo-alt" aria-hidden="true"></i> {{ site.location }}</li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> {{ site.email }}</li>
+            <li><i class="bi bi-shield-check" aria-hidden="true"></i> {{ site.availability }}</li>
+          </ul>
+          <div class="holo-scanline" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="about-story glass-panel reveal-up" style="--reveal-delay: 0.1s">
+          <h3 class="story-headline">{{ about.headline }}</h3>
+          {% for paragraph in about.paragraphs or [] %}
+          <p class="story-text">{{ paragraph }}</p>
+          {% endfor %}
+        </div>
+
+        <div class="row g-3 mt-1">
+          {% for stat in about.stats or [] %}
+          <div class="col-6 col-md-3">
+            <div class="stat-card glass-panel reveal-up" style="--reveal-delay: {{ loop.index0 * 0.05 }}s">
+              <span class="stat-value">
+                <span class="counter" data-target="{{ stat.value }}" {% if stat.value is float %}data-decimals="1"{% endif %}>0</span>{{ stat.suffix }}
+              </span>
+              <span class="stat-label">{{ stat.label }}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

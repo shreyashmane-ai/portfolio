@@ -1,0 +1,32 @@
+<div class="modal fade thunder-modal" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-content glass-panel">
+      <div class="modal-header border-0">
+        <div>
+          <span class="section-label" id="modal-sys-id">SYS-00</span>
+          <h2 class="modal-title h4 mb-0" id="projectModalLabel">Project Control Panel</h2>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle text-electric mb-2" id="modal-subtitle"></p>
+        <p id="modal-description"></p>
+        <div class="modal-metrics row g-3 my-3" id="modal-metrics"></div>
+        <div class="modal-tech d-flex flex-wrap gap-2" id="modal-tech"></div>
+      </div>
+      <div class="modal-footer border-0 flex-wrap gap-2">
+        <a href="#" class="btn btn-thunder mjolnir-btn" id="modal-demo" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-play-circle" aria-hidden="true"></i> Live Preview
+        </a>
+        <a href="#" class="btn btn-ghost mjolnir-btn" id="modal-github" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-github" aria-hidden="true"></i> View Source
+        </a>
+        <button type="button" class="btn btn-ghost" data-bs-dismiss="modal">Close Panel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if not request.path.startswith('/admin') %}
+<script type="application/json" id="projects-data">{{ projects|tojson }}</script>
+{% endif %}

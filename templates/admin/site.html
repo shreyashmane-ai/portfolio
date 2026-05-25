@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+  main { padding-top: 6rem; }
+  .admin-page-header { margin-bottom: 2rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="admin-page-header">
+    <span class="section-label">Site settings</span>
+    <h1 class="section-title">Global portfolio metadata</h1>
+    <p class="section-desc">Update your site title, hero roles, contact info, and social links from one place.</p>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="glass-panel p-4">
+        <h3 class="mb-3">Site settings</h3>
+        <form method="post">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            {{ form.name.label(class_='form-label') }}
+            {{ form.name(class_='form-control thunder-input') }}
+          </div>
+          <div class="mb-3">
+            {{ form.title.label(class_='form-label') }}
+            {{ form.title(class_='form-control thunder-input') }}
+          </div>
+          <div class="mb-3">
+            {{ form.tagline.label(class_='form-label') }}
+            {{ form.tagline(class_='form-control', rows=3) }}
+          </div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              {{ form.email.label(class_='form-label') }}
+              {{ form.email(class_='form-control') }}
+            </div>
+            <div class="col-md-6">
+              {{ form.location.label(class_='form-label') }}
+              {{ form.location(class_='form-control') }}
+            </div>
+          </div>
+          <div class="mb-3 mt-3">
+            {{ form.availability.label(class_='form-label') }}
+            {{ form.availability(class_='form-control thunder-input') }}
+          </div>
+          <div class="mb-3">
+            {{ form.hero_roles.label(class_='form-label') }}
+            {{ form.hero_roles(class_='form-control', rows=2) }}
+            <div class="form-text">Comma-separated hero roles.</div>
+          </div>
+          <div class="mb-3">
+            {{ form.github.label(class_='form-label') }}
+            {{ form.github(class_='form-control thunder-input') }}
+          </div>
+          <div class="mb-3">
+            {{ form.linkedin.label(class_='form-label') }}
+            {{ form.linkedin(class_='form-control') }}
+          </div>
+          <div class="mb-3">
+            {{ form.twitter.label(class_='form-label') }}
+            {{ form.twitter(class_='form-control') }}
+          </div>
+          <div class="d-grid mt-4">
+            {{ form.submit(class_='btn btn-thunder btn-lg') }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

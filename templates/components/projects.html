@@ -1,0 +1,60 @@
+<section id="projects" class="section section-projects" data-section="projects">
+  <div class="container px-3 px-lg-5">
+    <header class="section-header reveal-up">
+      <span class="section-label">Sector 03</span>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-desc">Production systems engineered as command-center control panels.</p>
+    </header>
+
+    <div class="row g-4">
+      {% for project in projects %}
+      <div class="col-lg-6">
+        <article class="projects-panel glass-panel energy-border reveal-up mjolnir-card" style="--reveal-delay: {{ loop.index0 * 0.08 }}s" id="projects-{{ project.id }}">
+          <div class="projects-header">
+            <div class="projects-status projects-status--{{ project.status }}">
+              <i class="bi bi-circle-fill" aria-hidden="true"></i>
+              <span>{{ project.status|upper }}</span>
+            </div>
+            <span class="projects-id">SYS-{{ '%02d'|format(loop.index) }}</span>
+          </div>
+
+          <h3 class="projects-title">{{ project.title }}</h3>
+          <p class="projects-subtitle">{{ project.subtitle }}</p>
+          <p class="projects-desc">{{ project.description }}</p>
+
+          <div class="projects-metrics row g-2">
+            {% for metric in project.metrics or [] %}
+            <div class="col-4">
+              <div class="projects-metric">
+                <span class="projects-metric-value">{{ metric.value }}</span>
+                <span class="projects-metric-label">{{ metric.label }}</span>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <div class="projects-tech d-flex flex-wrap gap-2">
+            {% for tech in project.tech or [] %}
+            <span class="tech-badge tech-badge--sm">{{ tech }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="projects-actions d-flex flex-wrap gap-2 mt-3">
+            <button type="button" class="btn btn-thunder btn-sm mjolnir-btn" data-bs-toggle="modal" data-bs-target="#projectModal" data-project-id="{{ project.id }}" aria-label="View details for {{ project.title }}">
+              <i class="bi bi-window-stack" aria-hidden="true"></i> Control Panel
+            </button>
+            <a href="{{ project.demo }}" class="btn btn-ghost btn-sm mjolnir-btn" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-play-circle" aria-hidden="true"></i> Live Preview
+            </a>
+            <a href="{{ project.github }}" class="btn btn-ghost btn-sm mjolnir-btn" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-github" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+
+          <div class="projects-grid-overlay" aria-hidden="true"></div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+<section id="skills" class="section section-skills" data-section="skills">
+  <div class="container px-3 px-lg-5">
+    <header class="section-header reveal-up">
+      <span class="section-label">Sector 02</span>
+      <h2 class="section-title">Skills</h2>
+      <p class="section-desc">Backend capabilities deployed as high-energy system modules.</p>
+    </header>
+
+    <div class="row g-4">
+      {% for skill in skills %}
+      <div class="col-md-6 col-xl-4">
+        <article class="skills-module glass-panel energy-border reveal-up mjolnir-card" style="--reveal-delay: {{ loop.index0 * 0.06 }}s">
+          <div class="skills-header">
+            <div class="skills-icon" aria-hidden="true">
+              <i class="bi bi-{{ skill.icon }}"></i>
+            </div>
+            <div>
+              <h3 class="skills-title">{{ skill.category }}</h3>
+              <span class="skills-level-label">Output {{ skill.level }}%</span>
+            </div>
+          </div>
+          <div class="skills-bar" role="progressbar" aria-valuenow="{{ skill.level }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ skill.category }} proficiency">
+            <div class="skills-bar-fill" data-level="{{ skill.level }}" style="width: 0%"></div>
+          </div>
+          <ul class="skills-tags">
+            {% for item in skill['items'] or [] %}
+            <li><span class="tech-badge">{{ item }}</span></li>
+            {% endfor %}
+          </ul>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

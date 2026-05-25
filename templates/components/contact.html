@@ -1,0 +1,64 @@
+<section id="contact" class="section section-contact" data-section="contact">
+  <div class="container px-3 px-lg-5">
+    <header class="section-header reveal-up">
+      <span class="section-label">Sector 05</span>
+      <h2 class="section-title">contact Me</h2>
+      <p class="section-desc">Open a secure transmission channel — responses within 24 hours.</p>
+    </header>
+
+    <div class="row g-4 g-xl-5">
+      <div class="col-lg-4">
+        <div class="contact-cards d-flex flex-column gap-3">
+          <a href="mailto:{{ site.email }}" class="contact-card glass-panel energy-border reveal-up mjolnir-card">
+            <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+            <div>
+              <span class="contact-card-label">Direct Line</span>
+              <span class="contact-card-value">{{ site.email }}</span>
+            </div>
+          </a>
+          {% for name, url in (site.social or {}).items() %}
+          <a href="{{ url }}" class="contact-card glass-panel energy-border reveal-up mjolnir-card" target="_blank" rel="noopener noreferrer" style="--reveal-delay: 0.05s">
+            <i class="bi bi-{% if name == 'github' %}github{% elif name == 'linkedin' %}linkedin{% elif name == 'twitter' %}twitter-x{% else %}link-45deg{% endif %}" aria-hidden="true"></i>
+            <div>
+              <span class="contact-card-label">{{ name|capitalize }}</span>
+              <span class="contact-card-value">Connect</span>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <form class="contact-form glass-panel energy-border reveal-up" action="{{ url_for('main.contact') }}" method="post" id="contact-form" novalidate>
+          {{ form.hidden_tag() }}
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="name" class="form-label">Name <span class="text-danger" aria-hidden="true">*</span></label>
+              <input type="text" class="form-control thunder-input" id="name" name="name" required autocomplete="name" minlength="2" placeholder="Your name">
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email <span class="text-danger" aria-hidden="true">*</span></label>
+              <input type="email" class="form-control thunder-input" id="email" name="email" required autocomplete="email" placeholder="you@domain.com">
+            </div>
+            <div class="col-12">
+              <label for="subject" class="form-label">Subject</label>
+              <input type="text" class="form-control thunder-input" id="subject" name="subject" placeholder="Project inquiry, collaboration...">
+            </div>
+            <div class="col-12">
+              <label for="message" class="form-label">Message <span class="text-danger" aria-hidden="true">*</span></label>
+              <textarea class="form-control thunder-input" id="message" name="message" rows="5" required minlength="10" placeholder="Describe your mission..."></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-thunder btn-lg w-100 mjolnir-btn" id="contact-submit">
+                <span class="btn-text"><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i> Transmit Signal</span>
+                <span class="btn-loading d-none" aria-hidden="true">
+                  <span class="spinner-border spinner-border-sm" role="status"></span> Transmitting...
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
