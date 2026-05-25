@@ -1,9 +1,11 @@
 """Application factory for the portfolio site.
 
 Initializes Flask app with database-backed models and blueprint registration
-for main, auth, and admin routes. Defaults from modules.defaults provide fallback data.
+for main, auth, and admin routes.
 """
+
 from __future__ import annotations
+
 import os
 from dotenv import load_dotenv
 from flask import Flask
@@ -12,29 +14,49 @@ load_dotenv()
 
 
 def _build_database_uri() -> str:
-    """Construct database URI from environment variables.
-    
-    Prefers DATABASE_URL env var. Falls back to MySQL if credentials provided,
-    otherwise uses SQLite.
-    
-    Returns:
-        SQLAlchemy database URI string
+    """Construct SQLAlchemy database URI.
+
+    Priority:
+    1. PostgreSQL DATABASE_URL (Render production)
+    2. MySQL local development
+    3. SQLite fallback
     """
-    if database_url := os.environ.get("DATABASE_URL"):
+
+    # Render PostgreSQL
+    database_url = os.environ.get("DATABASE_URL")
+
+    if database_url:
+        # Fix Render postgres URL format
+        if database_url.startswith("postgres://"):
+            database_url = database_url.replace(
+                "postgres://",
+                "postgresql://",
+                1
+            )
+
         return database_url
-    
+
+    # Local MySQL
     db_user = os.environ.get("DB_USER")
     db_password = os.environ.get("DB_PASSWORD")
-    
+
     if db_user and db_password:
         db_host = os.environ.get("DB_HOST", "localhost")
         db_port = os.environ.get("DB_PORT", "3306")
-        db_name = os.environ.get("DB_NAME", "portfolio")
-        return f"mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}?charset=utf8mb4"
-    
-    db_name = os.environ.get("DB_NAME", "data.db")
-    return f"sqlite:///{db_name}"
+        db_name = os.environ.get("DB_NAME", "myportfolio")
 
+        return (
+            f"mysql+pymysql://{db_user}:{db_password}"
+            f"@{db_host}:{db_port}/{db_name}"
+            f"?charset=utf8mb4"
+        )
+
+    # SQLite fallback
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    sqlite_path = os.path.join(base_dir, "data.db")
+
+    return f"sqlite:///{sqlite_path}"
+    
 
 def create_app(config: dict | None = None) -> Flask:
     """Create and configure Flask application.
