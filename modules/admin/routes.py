@@ -21,7 +21,7 @@ def _format_metrics(metrics_list: list | None) -> str:
 
 
 @bp.route("/")
-@login_required
+# @login_required
 def index():
     site = Site.query.first()
     about = About.query.first()
@@ -40,21 +40,21 @@ def index():
 
 
 @bp.route("/messages")
-@login_required
+# @login_required
 def message_list():
     messages = Message.query.order_by(Message.created_at.desc()).all()
     return render_template("admin/messages.html", messages=messages)
 
 
 @bp.route("/messages/<int:message_id>")
-@login_required
+# @login_required
 def message_view(message_id):
     msg = Message.query.get_or_404(message_id)    
     return render_template("admin/message_detail.html", message=msg)
 
 
 @bp.route("/messages/<int:message_id>/delete", methods=["POST"])
-@login_required
+# @login_required
 def message_delete(message_id):
     msg = Message.query.get_or_404(message_id)
     db.session.delete(msg)
@@ -64,7 +64,7 @@ def message_delete(message_id):
 
 
 @bp.route("/site", methods=["GET", "POST"])
-@login_required
+# @login_required
 def site_settings():
     site = Site.query.first() or Site()
     form = SiteForm()
@@ -106,7 +106,7 @@ def site_settings():
 
 
 @bp.route("/about", methods=["GET", "POST"])
-@login_required
+# @login_required
 def about_settings():
     about = About.query.first() or About()
     form = AboutForm()
@@ -135,7 +135,7 @@ def about_settings():
 
 
 @bp.route("/projects")
-@login_required
+# @login_required
 def project_list():
     projects = Project.query.order_by(Project.title).all()
     return render_template("admin/projects.html", projects=projects)
@@ -166,7 +166,7 @@ def project_create():
 
 
 @bp.route("/projects/<string:project_id>/edit", methods=["GET", "POST"])
-@login_required
+# @login_required
 def project_edit(project_id):
     project = Project.query.get_or_404(project_id)
     form = ProjectForm()
@@ -198,7 +198,7 @@ def project_edit(project_id):
 
 
 @bp.route("/projects/<string:project_id>/delete", methods=["POST"])
-@login_required
+# @login_required
 def project_delete(project_id):
     project = Project.query.get_or_404(project_id)
     db.session.delete(project)
@@ -208,14 +208,14 @@ def project_delete(project_id):
 
 
 @bp.route("/experience")
-@login_required
+# @login_required
 def experience_list():
     experience = Experience.query.order_by(Experience.period.desc()).all()
     return render_template("admin/experience.html", experience=experience)
 
 
 @bp.route("/experience/new", methods=["GET", "POST"])
-@login_required
+# @login_required
 def experience_create():
     form = ExperienceForm()
     if form.validate_on_submit():
@@ -234,7 +234,7 @@ def experience_create():
 
 
 @bp.route("/experience/<int:experience_id>/edit", methods=["GET", "POST"])
-@login_required
+# @login_required
 def experience_edit(experience_id):
     exp = Experience.query.get_or_404(experience_id)
     form = ExperienceForm()
@@ -258,7 +258,7 @@ def experience_edit(experience_id):
 
 
 @bp.route("/experience/<int:experience_id>/delete", methods=["POST"])
-@login_required
+# @login_required
 def experience_delete(experience_id):
     exp = Experience.query.get_or_404(experience_id)
     db.session.delete(exp)
@@ -268,14 +268,14 @@ def experience_delete(experience_id):
 
 
 @bp.route("/skills")
-@login_required
+# @login_required
 def skill_list():
     skills = SkillCategory.query.order_by(SkillCategory.category).all()
     return render_template("admin/skills.html", skills=skills)
 
 
 @bp.route("/skills/new", methods=["GET", "POST"])
-@login_required
+# @login_required
 def skill_create():
     form = SkillForm()
     if form.validate_on_submit():
@@ -293,7 +293,7 @@ def skill_create():
 
 
 @bp.route("/skills/<int:skill_id>/edit", methods=["GET", "POST"])
-@login_required
+# @login_required
 def skill_edit(skill_id):
     skill = SkillCategory.query.get_or_404(skill_id)
     form = SkillForm()
@@ -315,7 +315,7 @@ def skill_edit(skill_id):
 
 
 @bp.route("/skills/<int:skill_id>/delete", methods=["POST"])
-@login_required
+# @login_required
 def skill_delete(skill_id):
     skill = SkillCategory.query.get_or_404(skill_id)
     db.session.delete(skill)
